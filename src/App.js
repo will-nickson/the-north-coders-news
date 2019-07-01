@@ -5,6 +5,7 @@ import ArticleList from "./Articles/ArticleList";
 import SingleArticle from "./Articles/SingleArticle";
 import TopicList from "./Topics/TopicList";
 import ArticleAdder from "./Articles/ArticleAdder/ArticleAdder";
+import Footer from "./Footer/Footer";
 import Error from "./Error";
 import "./App.css";
 
@@ -40,6 +41,7 @@ export class App extends Component {
           />
           <Error default />
         </Router>
+        <Footer />
       </div>
     );
   }
