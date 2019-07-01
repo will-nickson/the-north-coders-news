@@ -12,8 +12,13 @@ const SignInLink = username => {
         <Link to="/">Log Out</Link>
       </li>
       <li>
-        <Link to="/" className="btn btn-floating pink lighten-1">
-          JJ
+        <Link to="/">
+          <img
+            href="/"
+            src="https://s-media-cache-ak0.pinimg.com/564x/39/62/ec/3962eca164e60cf46f979c1f57d4078b.jpg"
+            className="circle repsonsive-img-floating user-image"
+            alt="user avatar"
+          />
         </Link>
       </li>
     </ul>

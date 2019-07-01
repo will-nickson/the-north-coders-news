@@ -98,20 +98,23 @@ export class ArticleList extends Component {
             );
           })}
         </div>
-        <ul className="pagination">
-          <li
-            className="btn-small waves-effect waves-light align-left"
-            onClick={() => this.changePage(-1)}
-          >
-            <i className="material-icons">chevron_left</i>
-          </li>
-          <li
-            className="btn-small waves-effect waves-light align-right"
-            onClick={() => this.changePage(1)}
-          >
-            <i className="material-icons">chevron_right</i>
-          </li>
-        </ul>
+
+        <div className="container">
+          <ul className="pagination">
+            <li
+              className="btn-small waves-effect waves-light align-left"
+              onClick={() => this.changePage(-1)}
+            >
+              <i className="material-icons">chevron_left</i>
+            </li>
+            <li
+              className="btn-small waves-effect waves-light align-right"
+              onClick={() => this.changePage(1)}
+            >
+              <i className="material-icons">chevron_right</i>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
