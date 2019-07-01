@@ -7,7 +7,7 @@ const request = axios.create({
 export const getArticles = (topic, sortBy, orderBy, page) => {
   return request
     .get(`/articles`, {
-      params: { topic: topic, sort_by: sortBy, order_by: orderBy, p: page }
+      params: { topic: topic, sort_by: sortBy, order: orderBy, p: page }
     })
     .then(({ data }) => {
       return data.articles;

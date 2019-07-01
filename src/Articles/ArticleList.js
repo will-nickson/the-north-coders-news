@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import * as api from "../api";
 import { Link } from "@reach/router";
 import Error from "../Error";
-import "../App.css";
 import { distanceInWords } from "date-fns";
 
 export class ArticleList extends Component {
@@ -42,18 +41,24 @@ export class ArticleList extends Component {
           >
             Votes
           </button>
+        </div>
+        <div className="container section order-by-buttons">
           <button
             className="btn-small waves-effect waves-light"
-            onClick={() => this.setOrderBy()}
+            onClick={this.setOrderBy}
+            value="asc"
           >
             Asc
           </button>
           <button
             className="btn-small waves-effect waves-light"
-            onClick={() => this.setOrderBy()}
+            onClick={this.setOrderBy}
+            value="desc"
           >
             Desc
           </button>
+        </div>
+        <div className="container section topic-sort-buttons">
           <Link to="/topics/coding">
             <button className="btn-small waves-effect waves-light">
               Coding
@@ -98,17 +103,16 @@ export class ArticleList extends Component {
             );
           })}
         </div>
-
-        <div className="container">
+        <div className="container section pagination-wrapper">
           <ul className="pagination">
             <li
-              className="btn-small waves-effect waves-light align-left"
+              className="btn-small waves-effect waves-light pagination-left"
               onClick={() => this.changePage(-1)}
             >
               <i className="material-icons">chevron_left</i>
             </li>
             <li
-              className="btn-small waves-effect waves-light align-right"
+              className="btn-small waves-effect waves-light pagination-right"
               onClick={() => this.changePage(1)}
             >
               <i className="material-icons">chevron_right</i>
@@ -123,8 +127,8 @@ export class ArticleList extends Component {
     this.setState(prevState => ({ page: prevState.page + direction }));
   };
 
-  setOrderBy = orderBy => {
-    this.setState({ orderBy });
+  setOrderBy = event => {
+    this.setState({ orderBy: event.target.value });
   };
 
   setSortBy = sortBy => {
