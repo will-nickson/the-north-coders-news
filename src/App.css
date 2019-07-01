@@ -11,5 +11,36 @@
   white-space: nowrap;
   direction: ltr;
 }
-.ArticleList {
+
+.sort-buttons {
+  border: 1px solid;
+  border-radius: 2px 2px 0 0;
+  margin-bottom: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+}
+
+.article-list-wrapper {
+  overflow: hidden;
+  border: 1px solid;
+  border-radius: 2px 2px 0 0;
+  margin-bottom: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+.topic-list-wrapper {
+  overflow: hidden;
+  border: 1px solid;
+  border-radius: 2px 2px 0 0;
+  margin-bottom: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
 }

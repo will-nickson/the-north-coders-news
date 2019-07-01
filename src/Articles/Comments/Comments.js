@@ -20,7 +20,7 @@ export class Comments extends Component {
 
     return (
       <div className="container section submit-comment">
-        <div className="col s12 m5 offset-m1">
+        <div className="col s12 m5">
           <div className="row z-depth-1 comment-card">
             <form
               onSubmit={this.addComment}
@@ -38,60 +38,63 @@ export class Comments extends Component {
                   />
                 </div>
                 <div>
-                  <input
+                  <button
+                    className="btn waves-effect waves-light"
                     type="submit"
-                    value="Submit"
-                    className="btn"
+                    name="action"
                     onChange={this.onChange}
-                  />
+                  >
+                    Submit
+                    <i className="material-icons right">send</i>
+                  </button>
                 </div>
               </div>
             </form>
           </div>
         </div>
         <div className="container section comments-list">
-          <div className="col s12 m5 offset-m1">
+          <div className="col s12 m5">
             {comments &&
               comments.map((comment, index) => {
                 return (
                   <div className="row z-depth-1 comment-card" key={index}>
-                    <div className="col s12 m6">
-                      <ul className="card z-depth-0 comment-list">
+                    {/* <div className="col s12 m6"> */}
+                    <ul className="card z-depth-0 comment-list">
+                      <li>
+                        <span className="comment-author">
+                          <p>{comment.body}</p>
+                        </span>
+                      </li>
+                      <li>
+                        <span className="comment-author">
+                          <p className="grey-text">
+                            <i className="material-icons">perm_identity</i>
+                            {comment.author}
+                          </p>
+                        </span>
+                      </li>
+                      <li>
+                        <Voter
+                          votes={comment.votes}
+                          comment_id={comment.comment_id}
+                        />
+                      </li>
+                      {username !== comment.author ? null : (
                         <li>
-                          <span className="comment-author">
-                            <p>{comment.body}</p>
+                          <span>
+                            <button
+                              onClick={() =>
+                                this.handleDelete(comment.comment_id)
+                              }
+                              disabled={username !== comment.author}
+                            >
+                              <i className="material-icons">delete</i>
+                            </button>
                           </span>
                         </li>
-                        <li>
-                          <span className="comment-author">
-                            <p className="grey-text">
-                              <i className="material-icons">perm_identity</i>
-                              {comment.author}
-                            </p>
-                          </span>
-                        </li>
-                        <li>
-                          <Voter
-                            votes={comment.votes}
-                            comment_id={comment.comment_id}
-                          />
-                        </li>
-                        {username !== comment.author ? null : (
-                          <li>
-                            <span>
-                              <button
-                                onClick={() =>
-                                  this.handleDelete(comment.comment_id)
-                                }
-                                disabled={username !== comment.author}
-                              >
-                                <i className="material-icons">delete</i>
-                              </button>
-                            </span>
-                          </li>
-                        )}
-                      </ul>
-                    </div>
+                      )}
+                    </ul>
+                    {/* </div> */}
                   </div>
                 );
               })}

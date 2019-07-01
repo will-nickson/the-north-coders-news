@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../api";
 import { Link } from "@reach/router";
 import Error from "../Error";
+import "../App.css";
 import { distanceInWords } from "date-fns";
 
 export class ArticleList extends Component {
@@ -21,62 +22,96 @@ export class ArticleList extends Component {
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div>
-        <div className="container section sort-by">
-          <ul className="left">
-            <button onClick={() => this.setSortBy("created_at")}>Date</button>
-            <button onClick={() => this.setSortBy("comment_count")}>
-              Comment
+      <div className="wrapper">
+        <div className="container section article-list-buttons">
+          <button
+            className="btn-small waves-effect waves-light"
+            onClick={() => this.setSortBy("created_at")}
+          >
+            Date
+          </button>
+          <button
+            className="btn-small waves-effect waves-light"
+            onClick={() => this.setSortBy("comment_count")}
+          >
+            Comment
+          </button>
+          <button
+            className="btn-small waves-effect waves-light"
+            onClick={() => this.setSortBy("votes")}
+          >
+            Votes
+          </button>
+          <button
+            className="btn-small waves-effect waves-light"
+            onClick={() => this.setOrderBy()}
+          >
+            Asc
+          </button>
+          <button
+            className="btn-small waves-effect waves-light"
+            onClick={() => this.setOrderBy()}
+          >
+            Desc
+          </button>
+          <Link to="/topics/coding">
+            <button className="btn-small waves-effect waves-light">
+              Coding
             </button>
-            <button onClick={() => this.setSortBy("votes")}>Votes</button>
-            <button onClick={() => this.setOrderBy()}>Asc</button>
-            <button onClick={() => this.setOrderBy()}>Desc</button>
-            <button onClick={() => this.changePage(-1)}>Prev</button>
-            <button onClick={() => this.changePage(1)}>Next</button>
-            <Link to="/topics/coding">
-              <button>Coding</button>
-            </Link>
-            <Link to="/topics/football">
-              <button>Football</button>
-            </Link>
-            <Link to="/topics/cooking">
-              <button>Cooking</button>
-            </Link>
-          </ul>
+          </Link>
+          <Link to="/topics/football">
+            <button className="btn-small waves-effect waves-light">
+              Football
+            </button>
+          </Link>
+          <Link to="/topics/cooking">
+            <button className="btn-small waves-effect waves-light">
+              Cooking
+            </button>
+          </Link>
         </div>
-        <div className="container section article-list">
-          <div className="card z-depth-5">
-            <div className="card-content">
-              {articles.map((article, index) => {
-                return (
-                  <ul className="card z-depth-1 article-list" key={index}>
-                    <li className="card-content grey-text text-darken-3">
-                      <Link to={`/articles/${article.article_id}`}>
-                        {article.title}
-                      </Link>
-                    </li>
-                    <li className="card-content grey-text text-darken-3 left">
-                      Author: {article.author}
-                    </li>
-                    <li className="card-content grey-text text-darken-3">
-                      Comment ID: {article.article_id}
-                    </li>
-                    <li className="card-content grey-text text-darken-3">
-                      Comment Count: {article.comment_count}
-                    </li>
-                    <li className="card-content grey-text text-darken-3">
-                      Votes: {article.votes}
-                    </li>
-                    <li className="card-content grey-text text-darken-3">
-                      Posted {distanceInWords(article.created_at, new Date())}{" "}
-                      ago
-                    </li>
-                  </ul>
-                );
-              })}
-            </div>
-          </div>
+        <div className="container section article-list-wrapper">
+          {articles.map((article, index) => {
+            return (
+              <div
+                className="container grey lighten-2 box article-list-cards"
+                key={index}
+              >
+                <ul className="card z-depth-1 article-list left-align">
+                  <li className="card-content grey-text text-darken-3">
+                    <Link to={`/articles/${article.article_id}`}>
+                      {article.title}
+                    </Link>
+                  </li>
+                  <li className="card-content grey-text text-darken-3">
+                    {article.comment_count} comments
+                  </li>
+                  <li className="card-content grey-text text-darken-3">
+                    {article.votes} votes
+                  </li>
+                  <li className="card-content grey-text text-darken-3">
+                    Posted {distanceInWords(article.created_at, new Date())} ago
+                    by {article.author}
+                  </li>
+                </ul>
+              </div>
+            );
+          })}
         </div>
+        <ul className="pagination">
+          <li
+            className="btn-small waves-effect waves-light align-left"
+            onClick={() => this.changePage(-1)}
+          >
+            <i className="material-icons">chevron_left</i>
+          </li>
+          <li
+            className="btn-small waves-effect waves-light align-right"
+            onClick={() => this.changePage(1)}
+          >
+            <i className="material-icons">chevron_right</i>
+          </li>
+        </ul>
       </div>
     );
   }
