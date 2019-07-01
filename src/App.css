@@ -17,15 +17,31 @@
   margin-top: 10px;
 }
 
-.sort-buttons {
-  border: 1px solid;
+.article-list-buttons {
   border-radius: 2px 2px 0 0;
-  margin-bottom: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+.order-by-buttons {
+  border-radius: 2px 2px 0 0;
+  display: inline-block;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+.topic-sort-buttons {
+  border-radius: 2px 2px 0 0;
+  display: inline-block;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+.pagination-wrapper {
+  display: inline-block;
+  text-align: center;
+  padding: 8px 16px;
 }
 
 .article-list-wrapper {
