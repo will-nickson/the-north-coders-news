@@ -11,8 +11,6 @@ import "./App.css";
 
 export class App extends Component {
   state = {
-    articles: [],
-    topics: [],
     loggedInUser: {
       username: "jessjelly",
       avatar_url:
