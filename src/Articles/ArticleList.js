@@ -21,7 +21,7 @@ export class ArticleList extends Component {
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="wrapper">
+      <div className="container">
         <div className="container section article-list-buttons">
           <button
             className="btn-small waves-effect waves-light"
@@ -58,7 +58,7 @@ export class ArticleList extends Component {
             Desc
           </button>
         </div>
-        <div className="container section topic-sort-buttons">
+        <div className="container section offset-1 topic-sort-buttons">
           <Link to="/topics/coding">
             <button className="btn-small waves-effect waves-light">
               Coding
@@ -75,30 +75,30 @@ export class ArticleList extends Component {
             </button>
           </Link>
         </div>
-        <div className="container section article-list-wrapper">
+        <div className="row">
           {articles.map((article, index) => {
             return (
-              <div
-                className="container grey lighten-2 box article-list-cards"
-                key={index}
-              >
-                <ul className="card z-depth-1 article-list left-align">
-                  <li className="card-content grey-text text-darken-3">
-                    <Link to={`/articles/${article.article_id}`}>
-                      {article.title}
-                    </Link>
-                  </li>
-                  <li className="card-content grey-text text-darken-3">
-                    {article.comment_count} comments
-                  </li>
-                  <li className="card-content grey-text text-darken-3">
-                    {article.votes} votes
-                  </li>
-                  <li className="card-content grey-text text-darken-3">
-                    Posted {distanceInWords(article.created_at, new Date())} ago
-                    by {article.author}
-                  </li>
-                </ul>
+              <div className="col s9" key={index}>
+                <div className="card z-depth-1 article-list left-align">
+                  <div className="card-content grey-text text-darken-3">
+                    <span className="card-title">
+                      <Link to={`/articles/${article.article_id}`}>
+                        {article.title}
+                      </Link>
+                    </span>
+                    <span>
+                      Posted {distanceInWords(article.created_at, new Date())}{" "}
+                      ago by {article.author}
+                    </span>
+                  </div>
+                  <div className="card-action">
+                    <span>{article.comment_count} comments</span>
+                    <span>{article.topic}</span>
+                  </div>
+                  <div className="votes">
+                    <span>{article.votes} votes</span>
+                  </div>
+                </div>
               </div>
             );
           })}

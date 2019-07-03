@@ -3,6 +3,7 @@ import * as api from "../api";
 import Comments from "../Articles/Comments/Comments";
 import Error from "../Error";
 import Voter from "../Voter";
+import { distanceInWords } from "date-fns";
 
 export class SingleArticle extends Component {
   state = {
@@ -19,30 +20,40 @@ export class SingleArticle extends Component {
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="container section single-article">
-        <div className="row z-depth-1 col s12 m12 article-card">
-          <ul className="card z-depth-0 article-list">
+      <div className="container single-article-wrapper">
+        <div className="row">
+          <div className="card z-depth-1 col s12 article-card">
             <span className="card-title">
               <p>{article.title}</p>
             </span>
-            <span className="card-body">{article.body}</span>
-            <span className="card-topic">
-              <p>{article.topic}</p>
-            </span>
-            <span className="card-created-at">
-              <p>{article.created_at}</p>
-            </span>
-            <Voter votes={article.votes} article_id={article_id} />
-            <p className="grey-text">
-              <i className="material-icons">comments</i>
-              {article.comment_count}
-            </p>
-            <p className="grey-text">
-              <i className="material-icons">perm_identity</i>
-              {article.author}
-            </p>
-          </ul>
+            <div className="card-body">
+              <span className="card-content grey-text text-darken-3">
+                <p>{article.body}</p>
+              </span>
+            </div>
+
+            <div className="card-action">
+              <span>
+                <p>/t/{article.topic}</p>
+              </span>
+              <span className="card-created-at">
+                <p>
+                  Posted {distanceInWords(article.created_at, new Date())} ago
+                  by {article.author}
+                </p>
+              </span>
+
+              <Voter votes={article.votes} article_id={article_id} />
+              <span className="card grey-text">
+                <p>
+                  <i className="material-icons">comments</i>
+                  {article.comment_count} comments
+                </p>
+              </span>
+            </div>
+          </div>
         </div>
+
         <Comments article_id={article_id} username={username} />
       </div>
     );

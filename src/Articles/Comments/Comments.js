@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../../api";
 import Error from "../../Error";
 import Voter from "../../Voter";
+import { distanceInWords } from "date-fns";
 
 export class Comments extends Component {
   state = {
@@ -19,68 +20,57 @@ export class Comments extends Component {
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="container section submit-comment">
-        <div className="col s12 m5">
-          <div className="row z-depth-1 comment-card">
-            <form
-              onSubmit={this.addComment}
-              className="col s12"
-              /* onSubmit=""*/
-            >
-              <div className="input-field z-depth-1 col s12">
-                <div>
-                  <input
-                    type="text"
-                    name="userComment"
-                    placeholder="Add comment..."
-                    value={this.state.value}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <div>
-                  <button
-                    className="btn waves-effect waves-light"
-                    type="submit"
-                    name="action"
-                    onChange={this.onChange}
-                  >
-                    Submit
-                    <i className="material-icons right">send</i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div className="container comments-wrapper">
+        <div className="input-field col s12 left-align submit-comment-wrapper">
+          <form onSubmit={this.addComment} className="">
+            <div>
+              <input
+                type="text"
+                name="userComment"
+                placeholder="Add comment..."
+                value={this.state.value}
+                onChange={this.onChange}
+              />
+            </div>
+            <div>
+              <button
+                className="btn waves-effect waves-light"
+                type="submit"
+                name="action"
+                onChange={this.onChange}
+              >
+                Submit
+                <i className="material-icons right">send</i>
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="container section comments-list">
-          <div className="col s12 m5">
-            {comments &&
-              comments.map((comment, index) => {
-                return (
-                  <div className="row z-depth-1 comment-card" key={index}>
-                    {/* <div className="col s12 m6"> */}
-                    <ul className="card z-depth-0 comment-list">
-                      <li>
+        <div className="row">
+          {comments &&
+            comments.map((comment, index) => {
+              return (
+                <div className="col s12" key={index}>
+                  <div className="card z-depth-1 comment-list left-align">
+                    <div className="card-content grey-text text-darken-3">
+                      <span className="comment-author">
+                        <p>{comment.body}</p>
+                      </span>
+
+                      <div className="card-action">
                         <span className="comment-author">
-                          <p>{comment.body}</p>
-                        </span>
-                      </li>
-                      <li>
-                        <span className="comment-author">
-                          <p className="grey-text">
-                            <i className="material-icons">perm_identity</i>
-                            {comment.author}
+                          <p>
+                            Posted{" "}
+                            {distanceInWords(comment.created_at, new Date())}{" "}
+                            ago by {comment.author}
                           </p>
                         </span>
-                      </li>
-                      <li>
+
                         <Voter
                           votes={comment.votes}
                           comment_id={comment.comment_id}
                         />
-                      </li>
-                      {username !== comment.author ? null : (
-                        <li>
+
+                        {username !== comment.author ? null : (
                           <span>
                             <button
                               onClick={() =>
@@ -91,14 +81,13 @@ export class Comments extends Component {
                               <i className="material-icons">delete</i>
                             </button>
                           </span>
-                        </li>
-                      )}
-                    </ul>
-                    {/* </div> */}
+                        )}
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
-          </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     );

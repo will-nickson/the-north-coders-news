@@ -7,7 +7,10 @@ export default function Footer() {
         <div className="row">
           <div className="col s12 16">
             <h5>About Me</h5>
-            <p>I am the tech lead</p>
+            <p>
+              A software developer currently residing in the North West of
+              England
+            </p>
           </div>
           <div className="col s12 14 offset-12">
             <h5>Contact</h5>
@@ -18,7 +21,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-copyright grey darken-4">
-        <div className="container center-align">&copy; 2019 Will Nickson</div>
+        <div className="container center-align">Will Nickson &copy;2019</div>
       </div>
     </footer>
   );

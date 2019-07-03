@@ -45,14 +45,9 @@
 }
 
 .article-list-wrapper {
-  overflow: hidden;
-  border: 1px solid;
-  border-radius: 2px 2px 0 0;
-  margin-bottom: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
+  display: grid;
+  grid-template-columns: none;
+  grid-gap: 5px;
 }
 
 .topic-list-wrapper {
