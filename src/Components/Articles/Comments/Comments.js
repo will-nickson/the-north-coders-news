@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import * as api from "../../api";
-import Error from "../../Error";
+import * as api from "../../../api";
+import Error from "../../../Error";
 import Voter from "../../Voter";
 import { distanceInWords } from "date-fns";
 

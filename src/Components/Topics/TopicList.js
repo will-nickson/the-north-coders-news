@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import * as api from "../api";
+import * as api from "../../api";
 import { Link } from "@reach/router";
-import Error from "../Error";
-import "../App.css";
+import Error from "../../Error";
+import "../../App.css";
 
 export class TopicList extends Component {
   state = {

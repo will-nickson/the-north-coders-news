@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import * as api from "../api";
+import * as api from "../../api";
 import Comments from "../Articles/Comments/Comments";
-import Error from "../Error";
+import Error from "../../Error";
 import Voter from "../Voter";
 import { distanceInWords } from "date-fns";
 

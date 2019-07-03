@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import * as api from "../api";
+import * as api from "../../api";
 import { Link } from "@reach/router";
-import Error from "../Error";
+import Error from "../../Error";
 import { distanceInWords } from "date-fns";
 
 export class ArticleList extends Component {
