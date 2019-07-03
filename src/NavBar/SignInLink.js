@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const SignInLink = username => {
+const SignInLink = () => {
   return (
     <ul className="right" hide-on-med-and-down="true">
       <li>

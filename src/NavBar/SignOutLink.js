@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const SignOutLink = username => {
+const SignOutLink = () => {
   return (
     <ul className="right">
       <li>
