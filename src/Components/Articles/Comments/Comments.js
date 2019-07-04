@@ -47,9 +47,9 @@ export class Comments extends Component {
         </div>
         <div className="row">
           {comments &&
-            comments.map((comment, index) => {
+            comments.map(comment => {
               return (
-                <div className="col s12" key={index}>
+                <div className="col s12" key={comment.comment_id}>
                   <div className="card z-depth-1 comment-list left-align">
                     <div className="card-content grey-text text-darken-3">
                       <span className="comment-author">
@@ -94,7 +94,7 @@ export class Comments extends Component {
   }
 
   handleDelete = comment_id => {
-    const { comments } = this.state;
+    // const { comments } = this.state;
 
     api
       .deleteComment(comment_id)
@@ -102,7 +102,9 @@ export class Comments extends Component {
         this.setState(prevState => {
           return {
             comments: [
-              ...comments.filter(comment => comment.comment_id !== comment_id)
+              ...prevState.comments.filter(
+                comment => comment.comment_id !== comment_id
+              )
             ]
           };
         });

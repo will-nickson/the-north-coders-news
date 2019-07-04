@@ -76,9 +76,9 @@ export class ArticleList extends Component {
           </Link>
         </div>
         <div className="row">
-          {articles.map((article, index) => {
+          {articles.map(article => {
             return (
-              <div className="col s9" key={index}>
+              <div className="col s9" key={article.article_id}>
                 <div className="card z-depth-1 article-list left-align">
                   <div className="card-content grey-text text-darken-3">
                     <span className="card-title">
