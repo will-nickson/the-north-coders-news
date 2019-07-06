@@ -22,7 +22,11 @@ export class SingleArticle extends Component {
     return (
       <div className="container single-article-wrapper">
         <div className="row">
-          <div className="card z-depth-1 col s12 article-card">
+          <div className="card z-depth-1 col s1 l1 voter-card">
+            <Voter votes={article.votes} article_id={article_id} />
+          </div>
+
+          <div className="card z-depth-1 col s11 l11 offset-l1 article-card">
             <span className="card-title">
               <p>{article.title}</p>
             </span>
@@ -43,7 +47,6 @@ export class SingleArticle extends Component {
                 </p>
               </span>
 
-              <Voter votes={article.votes} article_id={article_id} />
               <span className="card grey-text">
                 <p>
                   <i className="material-icons">comments</i>

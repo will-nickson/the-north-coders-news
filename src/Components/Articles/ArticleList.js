@@ -5,6 +5,7 @@ import Error from "../../Error";
 import { distanceInWords } from "date-fns";
 import SortByButtons from "./Buttons/SortBy";
 import TopicButtons from "./Buttons/Topic";
+import Voter from "../Voter";
 
 export class ArticleList extends Component {
   state = {
@@ -29,36 +30,38 @@ export class ArticleList extends Component {
           setOrderBy={this.setOrderBy.bind(this.props)}
         />
 
-        <TopicButtons />
-
-        <div className="row">
-          {articles.map(article => {
-            return (
-              <div className="col s9" key={article.article_id}>
-                <div className="card z-depth-1 article-list left-align">
-                  <div className="card-content grey-text text-darken-3">
-                    <span className="card-title">
-                      <Link to={`/articles/${article.article_id}`}>
-                        {article.title}
-                      </Link>
-                    </span>
-                    <span>
-                      Posted {distanceInWords(article.created_at, new Date())}{" "}
-                      ago by {article.author}
-                    </span>
-                  </div>
-                  <div className="card-action">
-                    <span>{article.comment_count} comments</span>
-                    <span>{article.topic}</span>
-                  </div>
-                  <div className="votes">
-                    <span>{article.votes} votes</span>
-                  </div>
+        {articles.map(article => {
+          return (
+            <div className="post col s8 l8" key={article.article_id}>
+              <div className="voting-wrapper">
+                <div className="voting">
+                  <Voter
+                    votes={article.votes}
+                    article_id={articles.article_id}
+                  />
                 </div>
               </div>
-            );
-          })}
+              <i className="material-icons icon-comment">insert_comment</i>
+              <div className="content">
+                <div className="title">
+                  <Link to={`/articles/${article.article_id}`}>
+                    {article.title}
+                  </Link>
+                </div>
+                <div className="topic">
+                  t/{article.topic} - Posted{" "}
+                  {distanceInWords(article.created_at, new Date())} ago by{" "}
+                  {article.author}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        <div className="col l3 offset-l1">
+          <TopicButtons />
         </div>
+
         <div className="container section pagination-wrapper">
           <ul className="pagination">
             <li
