@@ -3,6 +3,8 @@ import * as api from "../../api";
 import { Link } from "@reach/router";
 import Error from "../../Error";
 import { distanceInWords } from "date-fns";
+import SortByButtons from "./Buttons/SortBy";
+import TopicButtons from "./Buttons/Topic";
 
 export class ArticleList extends Component {
   state = {
@@ -22,59 +24,13 @@ export class ArticleList extends Component {
 
     return (
       <div className="container">
-        <div className="container section article-list-buttons">
-          <button
-            className="btn-small waves-effect waves-light"
-            onClick={() => this.setSortBy("created_at")}
-          >
-            Date
-          </button>
-          <button
-            className="btn-small waves-effect waves-light"
-            onClick={() => this.setSortBy("comment_count")}
-          >
-            Comment
-          </button>
-          <button
-            className="btn-small waves-effect waves-light"
-            onClick={() => this.setSortBy("votes")}
-          >
-            Votes
-          </button>
-        </div>
-        <div className="container section order-by-buttons">
-          <button
-            className="btn-small waves-effect waves-light"
-            onClick={this.setOrderBy}
-            value="asc"
-          >
-            Asc
-          </button>
-          <button
-            className="btn-small waves-effect waves-light"
-            onClick={this.setOrderBy}
-            value="desc"
-          >
-            Desc
-          </button>
-        </div>
-        <div className="container section offset-1 topic-sort-buttons">
-          <Link to="/topics/coding">
-            <button className="btn-small waves-effect waves-light">
-              Coding
-            </button>
-          </Link>
-          <Link to="/topics/football">
-            <button className="btn-small waves-effect waves-light">
-              Football
-            </button>
-          </Link>
-          <Link to="/topics/cooking">
-            <button className="btn-small waves-effect waves-light">
-              Cooking
-            </button>
-          </Link>
-        </div>
+        <SortByButtons
+          setSortBy={this.setSortBy.bind(this.props)}
+          setOrderBy={this.setOrderBy.bind(this.props)}
+        />
+
+        <TopicButtons />
+
         <div className="row">
           {articles.map(article => {
             return (
@@ -127,12 +83,12 @@ export class ArticleList extends Component {
     this.setState(prevState => ({ page: prevState.page + direction }));
   };
 
-  setOrderBy = event => {
-    this.setState({ orderBy: event.target.value });
-  };
-
   setSortBy = sortBy => {
     this.setState({ sortBy });
+  };
+
+  setOrderBy = orderBy => {
+    this.setState({ orderBy });
   };
 
   componentDidMount() {
@@ -146,7 +102,6 @@ export class ArticleList extends Component {
     const pageChange = prevState.page !== this.state.page;
 
     if (topicChange || sortByChange || orderBy || pageChange) {
-      console.log("topic or sort has changed");
       this.fetchArticles();
     }
   }
