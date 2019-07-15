@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 
-export class Voter extends Component {
+class Voter extends Component {
   state = {
     voteChange: 0
   };
