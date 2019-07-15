@@ -40,28 +40,6 @@
   overflow: hidden;
 }
 
-.voting-wrapper {
-  float: left;
-  height: 500%;
-  padding: 10px;
-  background: #f7f9fa;
-  width: 50px;
-  text-align: center;
-}
-
-.voting-wrapper .voting .voter-wrapper .icon-voter {
-  outline: none;
-  border: none;
-  box-shadow: none;
-  align: center;
-}
-
-.voting {
-  display: flex;
-  justify-content: top;
-  flex-direction: column;
-}
-
 .post .icon-comment {
   float: left;
   font-size: 24px;
@@ -73,7 +51,15 @@
 .content {
   float: left;
   text-align: left;
+  margin-left: 25px;
   margin-top: 16px;
+}
+
+.single-article-content {
+  float: left;
+  text-align: left;
+  margin-left: 25px;
+  margin-top: 25px;
 }
 
 .title {
@@ -81,9 +67,103 @@
   font-size: 18px;
 }
 
+.single-article-content .title {
+  color: #222222;
+  font-size: 18px;
+}
+
+.content .body {
+  margin-top: 25px;
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.single-article-content .body {
+  margin-top: 5px;
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.content .topic {
+  margin-top: 25px;
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.comment-body {
+  margin-top: 25px;
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.comment-author {
+  margin-top: 25px;
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.card-title {
+  color: #222222;
+  font-size: 18px;
+}
+
 .community {
   color: #1c1c31;
 }
+
+/* Voting */
+
+.voting-wrapper {
+  float: left;
+  height: 500%;
+  padding: 10px;
+  background: #f7f9fa;
+  width: 50px;
+  text-align: center;
+}
+
+.comment-voting-wrapper {
+  float: left;
+  height: 500%;
+  padding: 10px;
+  background: #f7f9fa;
+  width: 50px;
+  text-align: center;
+}
+
+.single-article-voting-wrapper {
+  float: left;
+  height: 500%;
+  padding: 10px;
+  background: #f7f9fa;
+  width: 50px;
+  text-align: center;
+}
+
+.voting {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.comment-voting {
+  display: flex;
+  justify-content: top;
+  flex-direction: column;
+}
+
+.single-article-voting {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+/* Comments */
 
 /* Buttons */
 
