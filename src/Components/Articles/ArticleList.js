@@ -32,8 +32,8 @@ export class ArticleList extends Component {
 
         {articles.map(article => {
           return (
-            <div className="post col s8 l8" key={article.article_id}>
-              <div className="voting-wrapper">
+            <div className="post col s8 l8 z-depth-1" key={article.article_id}>
+              <div className="voting-wrapper z-depth-1">
                 <div className="voting">
                   <Voter
                     votes={article.votes}
@@ -42,6 +42,7 @@ export class ArticleList extends Component {
                 </div>
               </div>
               <i className="material-icons icon-comment">insert_comment</i>
+
               <div className="content">
                 <div className="title">
                   <Link to={`/articles/${article.article_id}`}>
