@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import SignIn from "../Auth/SignIn";
 
 const SignInLink = () => {
   // const sidenavs = document.querySelectorAll(".sidenav");
@@ -8,9 +9,24 @@ const SignInLink = () => {
   // }
   return (
     <>
-      <ul className="right hide-on-med-and-down">
+      <ul id="dropdown" className="dropdown-content">
         <li>
           <Link to="/topics">Topics List</Link>
+        </li>
+        <li>
+          {" "}
+          <Link to="/topics/coding" />{" "}
+        </li>
+        <li> </li>
+      </ul>
+      <ul className="right hide-on-med-and-down">
+        {/* <li>
+          <Link to="/topics">Topics List</Link>
+        </li> */}
+        <li>
+          <Link to="/topics">
+            Topics List<i className="material-icons right">arrow_drop_down</i>
+          </Link>
         </li>
 
         <li>
