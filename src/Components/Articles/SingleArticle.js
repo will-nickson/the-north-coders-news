@@ -20,44 +20,32 @@ export class SingleArticle extends Component {
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="container single-article-wrapper">
-        <div className="row">
-          <div className="card z-depth-1 col s1 l1 voter-card">
-            <Voter votes={article.votes} article_id={article_id} />
+      <div className="container">
+        <div className="post col s8 l8 z-depth-1">
+          <div className="single-article-voting-wrapper z-depth-1">
+            <div className="single-article-voting">
+              <Voter votes={article.votes} article_id={article_id} />
+            </div>
           </div>
 
-          <div className="card z-depth-1 col s11 l11 offset-l1 article-card">
-            <span className="card-title">
-              <p>{article.title}</p>
-            </span>
-            <div className="card-body">
-              <span className="card-content grey-text text-darken-3">
-                <p>{article.body}</p>
-              </span>
+          <div className="content">
+            <div className="title">{article.title}</div>
+            <div className="body">
+              <p>{article.body}</p>
             </div>
-
-            <div className="card-action">
-              <span>
-                <p>/t/{article.topic}</p>
-              </span>
-              <span className="card-created-at">
-                <p>
-                  Posted {distanceInWords(article.created_at, new Date())} ago
-                  by {article.author}
-                </p>
-              </span>
-
-              <span className="card grey-text">
-                <p>
-                  <i className="material-icons">comments</i>
-                  {article.comment_count} comments
-                </p>
-              </span>
+            <div className="topic">
+              t/{article.topic} - Posted{" "}
+              {distanceInWords(article.created_at, new Date())} ago by{" "}
+              {article.author}
             </div>
           </div>
         </div>
 
-        <Comments article_id={article_id} username={username} />
+        <div className="comments-wrapper">
+          <div className="comments">
+            <Comments article_id={article_id} username={username} />
+          </div>
+        </div>
       </div>
     );
   }
