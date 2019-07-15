@@ -57,7 +57,10 @@ export class ArticleAdder extends Component {
         this.setState({ title: "", body: "", topic: "" });
         this.props.navigate(`/articles/${article.article_id}`);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.setState({ hasError: error, loading: false });
+        console.log(error);
+      });
   };
 
   handleChange = event => {
