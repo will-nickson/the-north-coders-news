@@ -20,7 +20,7 @@ export class Comments extends Component {
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="container comments-wrapper">
+      <div className="container">
         <div className="input-field col s12 left-align submit-comment-wrapper">
           <form onSubmit={this.addComment} className="">
             <div>
@@ -45,57 +45,51 @@ export class Comments extends Component {
             </div>
           </form>
         </div>
-        <div className="row">
-          {comments &&
-            comments.map(comment => {
-              return (
-                <div className="col s12" key={comment.comment_id}>
-                  <div className="card z-depth-1 comment-list left-align">
-                    <div className="card-content grey-text text-darken-3">
-                      <span className="comment-author">
-                        <p>{comment.body}</p>
-                      </span>
 
-                      <div className="card-action">
-                        <span className="comment-author">
-                          <p>
-                            Posted{" "}
-                            {distanceInWords(comment.created_at, new Date())}{" "}
-                            ago by {comment.author}
-                          </p>
-                        </span>
-
-                        <Voter
-                          votes={comment.votes}
-                          comment_id={comment.comment_id}
-                        />
-
-                        {username !== comment.author ? null : (
-                          <span>
-                            <button
-                              onClick={() =>
-                                this.handleDelete(comment.comment_id)
-                              }
-                              disabled={username !== comment.author}
-                            >
-                              <i className="material-icons">delete</i>
-                            </button>
-                          </span>
-                        )}
-                      </div>
-                    </div>
+        {comments &&
+          comments.map(comment => {
+            return (
+              <div
+                className="post col s8 l8 z-depth-1"
+                key={comment.comment_id}
+              >
+                <div className="comment-voting-wrapper z-depth-1">
+                  <div className="comment-voting">
+                    <Voter
+                      votes={comment.votes}
+                      comment_id={comment.comment_id}
+                    />
                   </div>
                 </div>
-              );
-            })}
-        </div>
+
+                <div className="content">
+                  <div className="comment-body">
+                    <p>{comment.body}</p>
+                  </div>
+                  <div className="comment-author">
+                    Posted {distanceInWords(comment.created_at, new Date())} ago
+                    by {comment.author}
+                  </div>
+
+                  <div className="comment-delete">
+                    {username !== comment.author ? null : (
+                      <button
+                        onClick={() => this.handleDelete(comment.comment_id)}
+                        disabled={username !== comment.author}
+                      >
+                        <i className="material-icons">delete</i>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
       </div>
     );
   }
 
   handleDelete = comment_id => {
-    // const { comments } = this.state;
-
     api
       .deleteComment(comment_id)
       .then(comment => {
@@ -109,7 +103,10 @@ export class Comments extends Component {
           };
         });
       })
-      .catch(error => console.dir(error));
+      .catch(error => {
+        this.setState({ hasError: error, loading: false });
+        console.dir(error);
+      });
   };
 
   addComment = event => {
@@ -121,14 +118,22 @@ export class Comments extends Component {
     api
       .postComment(article_id, author, userComment)
       .then(comment => {
-        this.setState(prevState => {
-          return {
-            comments: [comment, ...prevState.comments],
-            userComment: ""
-          };
-        });
+        console.log(comment.body.length);
+        if (comment.body.length > 1) {
+          this.setState(prevState => {
+            return {
+              comments: [comment, ...prevState.comments],
+              userComment: ""
+            };
+          });
+        } else {
+          alert("unable to post comment");
+        }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.setState({ hasError: error, loading: false });
+        console.log(error);
+      });
   };
 
   onChange = event => {
