@@ -9,7 +9,7 @@ import Footer from "./Footer/Footer";
 import Error from "../Error";
 import "../App.css";
 
-export class App extends Component {
+class App extends Component {
   state = {
     loggedInUser: {
       username: "jessjelly",
