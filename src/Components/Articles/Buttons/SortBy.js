@@ -23,7 +23,7 @@ export default function SortByButtons(props) {
           Votes
         </button>
       </div>
-      <div className="container section order-by-buttons">
+      {/* <div className="container section order-by-buttons">
         <button
           className="btn-small waves-effect waves-light"
           onClick={() => props.setOrderBy("asc")}
@@ -36,7 +36,7 @@ export default function SortByButtons(props) {
         >
           Desc
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
