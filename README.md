@@ -10,12 +10,12 @@ NC News is a Reddit esq news aggregation application.
 
 Front-End:
 
-- [Netlify - The North Coders News]()
+- [Netlify - The North Coders News](https://the-north-coders-news.netlify.com/)
 - [Git repository](https://github.com/will-nickson/the-north-coders-news.git)
 
 Back-end:
 
-- [Heroku - BE NC News]()
+- [Heroku - BE NC News](https://will-nickson-nc-news.herokuapp.com/api/)
 - [Git repository](https://github.com/will-nickson/be-nc-news.git)
 
 ---
