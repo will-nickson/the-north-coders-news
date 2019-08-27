@@ -2,41 +2,47 @@ import React from "react";
 
 export default function SortByButtons(props) {
   return (
-    <div>
-      <div className="container section article-list-buttons">
+    <ul className="tabs tabs-transparent">
+      <li className="tab">
         <button
           className="btn-small waves-effect waves-light"
           onClick={() => props.setSortBy("created_at")}
         >
           Date
         </button>
+      </li>
+      <li className="tab">
         <button
           className="btn-small waves-effect waves-light"
           onClick={() => props.setSortBy("comment_count")}
         >
-          Comment
+          Comments
         </button>
+      </li>
+      <li className="tab">
         <button
           className="btn-small waves-effect waves-light"
           onClick={() => props.setSortBy("votes")}
         >
           Votes
         </button>
-      </div>
-      {/* <div className="container section order-by-buttons">
+      </li>
+      <li className="tab">
         <button
           className="btn-small waves-effect waves-light"
           onClick={() => props.setOrderBy("asc")}
         >
           Asc
         </button>
+      </li>
+      <li className="tab">
         <button
           className="btn-small waves-effect waves-light"
           onClick={() => props.setOrderBy("desc")}
         >
           Desc
         </button>
-      </div> */}
-    </div>
+      </li>
+    </ul>
   );
 }
