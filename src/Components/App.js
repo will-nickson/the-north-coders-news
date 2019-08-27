@@ -8,6 +8,7 @@ import ArticleAdder from "./Articles/ArticleAdder/ArticleAdder";
 import Footer from "./Footer/Footer";
 import Error from "../Error";
 import "../App.css";
+import "materialize-css/dist/css/materialize.min.css";
 
 class App extends Component {
   state = {
