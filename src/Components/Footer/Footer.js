@@ -7,14 +7,8 @@ export default function Footer() {
         <div className="row">
           <div className="col s12 16">
             <h5>About Me</h5>
-            <p>Software developer from the North West of England</p>
+            <p>Full stack software developer based in the UK</p>
           </div>
-          {/* <div className="col s12 14 offset-12">
-            <h5>Contact</h5>
-            <ul>
-              <li className="grey-text text-lighten-3" />
-            </ul>
-          </div> */}
         </div>
       </div>
       <div className="footer-copyright grey darken-4">
