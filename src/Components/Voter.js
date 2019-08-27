@@ -10,11 +10,11 @@ class Voter extends Component {
     const { voteChange } = this.state;
     const { votes } = this.props;
     return (
-      <div className="voter-wrapper">
+      <div className="voting-wrapper z-depth-1">
         <button onClick={() => this.handleVote(1)} disabled={voteChange > 0}>
           <i className="material-icons icon-voter">expand_less</i>
         </button>
-        {votes + voteChange}
+        <div className="vote-count">{votes + voteChange}</div>
         <button onClick={() => this.handleVote(-1)} disabled={voteChange < 0}>
           <i className="material-icons icon-voter">expand_more</i>
         </button>
