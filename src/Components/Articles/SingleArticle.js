@@ -16,21 +16,22 @@ export class SingleArticle extends Component {
     const { article, hasError, loading } = this.state;
     const { article_id, username } = this.props;
 
-    if (loading) return <p>Loading...</p>;
+    if (loading)
+      return (
+        <div className="container progress">
+          <div className="indeterminate" />
+        </div>
+      );
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="container">
-        <div className="post col s8 l8 z-depth-1">
-          <div className="single-article-voting-wrapper z-depth-1">
-            <div className="single-article-voting">
-              <Voter votes={article.votes} article_id={article_id} />
-            </div>
-          </div>
+      <div className="container single-article-container col s12 m4 l8">
+        <div className="single-article z-depth-1">
+          <Voter votes={article.votes} article_id={article_id} />
 
-          <div className="content">
-            <div className="title">{article.title}</div>
-            <div className="body">
+          <div className="single-article-content">
+            <div className="single-article-title">{article.title}</div>
+            <div className="body flow-text">
               <p>{article.body}</p>
             </div>
             <div className="topic">
@@ -41,11 +42,7 @@ export class SingleArticle extends Component {
           </div>
         </div>
 
-        <div className="comments-wrapper">
-          <div className="comments">
-            <Comments article_id={article_id} username={username} />
-          </div>
-        </div>
+        <Comments article_id={article_id} username={username} />
       </div>
     );
   }
