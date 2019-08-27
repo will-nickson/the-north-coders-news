@@ -1,30 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "@reach/router";
+import M from "materialize-css";
 
-export default function NavBar(username) {
-  return (
-    <header>
-      <nav className="nav-wrapper grey darken-3">
-        <div className="container">
-          <ul>
-            <li>
-              <Link
-                to="/"
-                // {`https://will-nickson-nc-news.herokuapp.com/api/`}
-                className="NC-logo"
-              >
-                NC News
-              </Link>
-            </li>
+class NavBar extends Component {
+  render() {
+    return (
+      <header>
+        <ul id="dropdown1" className="dropdown-content">
+          <li>
+            <Link to="topics/coding">Coding</Link>
+          </li>
+          <li className="divider" />
+          <li>
+            <Link to="topics/football">Football</Link>
+          </li>
+          <li className="divider" />
+          <li>
+            <Link to="topics/cooking">Cooking</Link>
+          </li>
+        </ul>
 
-            <ul className="right hide-on-med-and-down">
+        <nav className="nav-extended grey darken-3">
+          <div className="container nav-wrapper">
+            <Link to="/" className="NC-logo left-align hide-on-small-only">
+              NC News
+            </Link>
+
+            <ul className="right hide-on-small-only">
               <li>
                 <Link
                   to="/topics"
                   className="dropdown-trigger"
                   data-target="dropdown1"
                 >
-                  Topics List
+                  Topics
                   <i className="material-icons right">arrow_drop_down</i>
                 </Link>
               </li>
@@ -39,7 +48,9 @@ export default function NavBar(username) {
                 </Link>
               </li>
             </ul>
+          </div>
 
+          <ul className="sidenav grey lighten-2" id="mobile-menu">
             <li>
               <Link
                 className="sidenav-trigger"
@@ -50,14 +61,26 @@ export default function NavBar(username) {
               </Link>
             </li>
 
-            <ul className="sidenav grey lighten-2" id="mobile-menu">
-              <li>
-                <Link to="/topics">Topics List</Link>
-              </li>
-            </ul>
+            <li>
+              <Link to="/topics">Topics List</Link>
+            </li>
           </ul>
-        </div>
-      </nav>
-    </header>
-  );
+        </nav>
+      </header>
+    );
+  }
+
+  componentDidMount() {
+    let elems = document.querySelectorAll(".dropdown-trigger");
+    let options = {
+      inDuration: 300,
+      outDuration: 300,
+      hover: true,
+      coverTrigger: false
+    };
+
+    M.Dropdown.init(elems, options);
+  }
 }
+
+export default NavBar;
