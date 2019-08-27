@@ -9,40 +9,43 @@ export class Comments extends Component {
     comments: [],
     hasError: false,
     loading: true,
-    userComment: ""
+    userComment: "",
+    placeholderText: "Add comment..."
   };
 
   render() {
     const { comments, hasError, loading } = this.state;
     const { username } = this.props;
 
-    if (loading) return <p>Loading...</p>;
+    if (loading)
+      return (
+        <div className="container progress">
+          <div className="indeterminate" />
+        </div>
+      );
+
     if (hasError) return <Error error={hasError} />;
 
     return (
-      <div className="container">
-        <div className="input-field col s12 left-align submit-comment-wrapper">
+      <div className="comments-container col s12 m4 l8 left-align">
+        <div className="input-field submit-comment-wrapper">
           <form onSubmit={this.addComment} className="">
-            <div>
-              <input
-                type="text"
-                name="userComment"
-                placeholder="Add comment..."
-                value={this.state.value}
-                onChange={this.onChange}
-              />
-            </div>
-            <div>
-              <button
-                className="btn waves-effect waves-light"
-                type="submit"
-                name="action"
-                onChange={this.onChange}
-              >
-                Submit
-                <i className="material-icons right">send</i>
-              </button>
-            </div>
+            <input
+              type="text"
+              name="userComment"
+              placeholder={this.state.placeholderText}
+              value={this.state.value}
+              onChange={this.onChange}
+            />
+            <button
+              className="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+              onChange={this.onChange}
+            >
+              Submit
+              <i className="material-icons right">send</i>
+            </button>
           </form>
         </div>
 
@@ -50,19 +53,12 @@ export class Comments extends Component {
           comments.map(comment => {
             return (
               <div
-                className="post col s8 l8 z-depth-1"
+                className="comment-wrapper z-depth-1"
                 key={comment.comment_id}
               >
-                <div className="comment-voting-wrapper z-depth-1">
-                  <div className="comment-voting">
-                    <Voter
-                      votes={comment.votes}
-                      comment_id={comment.comment_id}
-                    />
-                  </div>
-                </div>
+                <Voter votes={comment.votes} comment_id={comment.comment_id} />
 
-                <div className="content">
+                <div className="comment-content">
                   <div className="comment-body">
                     <p>{comment.body}</p>
                   </div>
@@ -70,17 +66,17 @@ export class Comments extends Component {
                     Posted {distanceInWords(comment.created_at, new Date())} ago
                     by {comment.author}
                   </div>
+                </div>
 
-                  <div className="comment-delete">
-                    {username !== comment.author ? null : (
-                      <button
-                        onClick={() => this.handleDelete(comment.comment_id)}
-                        disabled={username !== comment.author}
-                      >
-                        <i className="material-icons">delete</i>
-                      </button>
-                    )}
-                  </div>
+                <div className="comment-delete">
+                  {username !== comment.author ? null : (
+                    <button
+                      onClick={() => this.handleDelete(comment.comment_id)}
+                      disabled={username !== comment.author}
+                    >
+                      <i className="material-icons">delete</i>
+                    </button>
+                  )}
                 </div>
               </div>
             );
@@ -137,7 +133,10 @@ export class Comments extends Component {
   };
 
   onChange = event => {
-    this.setState({ userComment: event.target.value });
+    this.setState({
+      userComment: event.target.value,
+      placeholderText: "Add comment..."
+    });
   };
 
   componentDidMount() {
